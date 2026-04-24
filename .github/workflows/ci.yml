@@ -38,3 +38,17 @@ jobs:
 
     - name: Show file content
       run: cat output.txt
+      
+  deploy:
+  runs-on: ubuntu-latest
+  needs: test
+
+  steps:
+  - uses: actions/download-artifact@v4
+    with:
+      name: output-file
+
+  - name: Deploy step (simulate)
+    run: |
+      echo "Deploying application..."
+      cat output.txt
